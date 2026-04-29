@@ -37,7 +37,8 @@
                 <td>
                     @if($item->foto_produk)
                         <!-- <img src="{{ Storage::url('produk/'.$item->foto_produk) }}" width="80"> -->
-                        <img src="{{ Storage::url('produk/'.$item->foto_produk) }}" width="100">
+                        <!-- <img src="{{ Storage::url('produk/'.$item->foto_produk) }}" width="80"> -->
+                        <img src="{{ asset('storage/produk/'.$item->foto_produk) }}" width="350">
                         
                     @endif
                 </td>

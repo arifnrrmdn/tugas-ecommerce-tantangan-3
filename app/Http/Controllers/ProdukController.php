@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produk;
+use Illuminate\Support\Facades\Storage;
 
 class ProdukController extends Controller
 {
@@ -29,10 +30,10 @@ class ProdukController extends Controller
 
         $input = $request->all();
 
+        // ✅ Upload foto (konsisten ke public/produk)
         if ($request->hasFile('foto_produk')) {
-            $fileName = time().'_'.$request->foto_produk->getClientOriginalName();
-            $request->foto_produk->storeAs('produk', $fileName);
-            $input['foto_produk'] = $fileName;
+            $path = $request->file('foto_produk')->store('produk', 'public');
+            $input['foto_produk'] = basename($path);
         }
 
         Produk::create($input);
@@ -59,13 +60,20 @@ class ProdukController extends Controller
 
         $input = $request->all();
 
+        // ✅ Kalau ada foto baru
         if ($request->hasFile('foto_produk')) {
-            $fileName = time().'_'.$request->foto_produk->getClientOriginalName();
-            // $request->foto_produk->storeAs('produk', $fileName);
-            $request->foto_produk->storeAs('public/produk', $fileName);
-            
-            $input['foto_produk'] = $fileName;
+
+            // 🔥 Hapus foto lama
+            if ($produk->foto_produk) {
+                Storage::disk('public')->delete('produk/'.$produk->foto_produk);
+            }
+
+            // 🔥 Upload foto baru
+            $path = $request->file('foto_produk')->store('produk', 'public');
+            $input['foto_produk'] = basename($path);
         }
+
+        // ❗ Kalau tidak upload → foto lama tetap aman
 
         $produk->update($input);
 
@@ -75,6 +83,12 @@ class ProdukController extends Controller
     public function destroy($id)
     {
         $produk = Produk::findOrFail($id);
+
+        // ✅ Hapus foto juga
+        if ($produk->foto_produk) {
+            Storage::disk('public')->delete('produk/'.$produk->foto_produk);
+        }
+
         $produk->delete();
 
         return redirect('/produk')->with('success', 'Data berhasil dihapus');
