@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Produk extends Model
 {
     use HasFactory;
+
     protected $table = 'produk';
+
     protected $fillable = [
         'nama_produk',
         'kategori_produk',

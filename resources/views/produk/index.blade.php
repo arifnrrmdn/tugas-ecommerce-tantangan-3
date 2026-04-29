@@ -35,11 +35,16 @@
                 <td>{{ $loop->iteration }}</td>
 
                 <td>
-                    @if($item->foto_produk)
-                        <!-- <img src="{{ Storage::url('produk/'.$item->foto_produk) }}" width="80"> -->
-                        <!-- <img src="{{ Storage::url('produk/'.$item->foto_produk) }}" width="80"> -->
-                        <img src="{{ asset('storage/produk/'.$item->foto_produk) }}" width="350">
-                        
+                    @php
+                        $file = public_path('storage/produk/'.$item->foto_produk);
+                    @endphp
+
+                    @if($item->foto_produk && file_exists($file))
+                        <img src="{{ asset('storage/produk/'.$item->foto_produk) }}" width="80">
+                    @else
+                        <div style="width:80px;height:80px;background:#ddd;display:flex;align-items:center;justify-content:center;font-size:12px;color:#666;">
+                            Produk
+                        </div>
                     @endif
                 </td>
 
