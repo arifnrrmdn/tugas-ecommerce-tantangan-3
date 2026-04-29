@@ -25,7 +25,8 @@ class ProdukController extends Controller
             'kategori_produk' => 'required',
             'harga_produk' => 'required|numeric|min:1000',
             'nama_produk' => 'required|min:3|max:100',
-            'stok' => 'required|numeric|min:0'
+            'stok' => 'required|numeric|min:0',
+            'foto_produk' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
         ]);
 
         $input = $request->all();

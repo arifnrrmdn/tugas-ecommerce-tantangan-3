@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-    Schema::create('pelanggans', function (Blueprint $table) {
-        $table->id();
-        $table->string('nama');
-        $table->text('alamat');
-        $table->string('telepon');
-        $table->string('foto')->nullable();
-        $table->timestamps();
-    });
+        Schema::table('pelanggan', function (Blueprint $table) {
+            $table->string('foto')->nullable();
+        });
     }
 
     /**
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pelanggan');
+        Schema::table('pelanggan', function (Blueprint $table) {
+            //
+        });
     }
 };
