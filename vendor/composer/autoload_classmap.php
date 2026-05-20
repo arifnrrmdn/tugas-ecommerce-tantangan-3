@@ -7,7 +7,10 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\PelangganController' => $baseDir . '/app/Http/Controllers/PelangganController.php',
     'App\\Http\\Controllers\\ProdukController' => $baseDir . '/app/Http/Controllers/ProdukController.php',
+    'App\\Models\\Kategori' => $baseDir . '/app/Models/Kategori.php',
+    'App\\Models\\Pelanggan' => $baseDir . '/app/Models/Pelanggan.php',
     'App\\Models\\Produk' => $baseDir . '/app/Models/Produk.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
@@ -136,6 +139,7 @@ return array(
     'Database\\Factories\\ProdukFactory' => $baseDir . '/database/factories/ProdukFactory.php',
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
+    'Database\\Seeders\\KategoriSeeder' => $baseDir . '/database/seeders/KategoriSeeder.php',
     'Database\\Seeders\\PelangganSeeder' => $baseDir . '/database/seeders/PelangganSeeder.php',
     'Database\\Seeders\\ProdukSeeder' => $baseDir . '/database/seeders/ProdukSeeder.php',
     'DateError' => $vendorDir . '/symfony/polyfill-php83/Resources/stubs/DateError.php',

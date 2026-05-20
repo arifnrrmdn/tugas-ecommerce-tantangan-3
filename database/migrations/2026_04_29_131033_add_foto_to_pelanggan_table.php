@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('pelanggan', function (Blueprint $table) {
-            $table->string('foto')->nullable();
-        });
+        // Kolom foto sudah ada di create_pelanggan_table migration
+        // Migration ini tidak perlu lagi
     }
 
     /**

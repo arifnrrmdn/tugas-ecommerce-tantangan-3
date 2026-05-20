@@ -13,9 +13,14 @@ class Produk extends Model
 
     protected $fillable = [
         'nama_produk',
-        'kategori_produk',
+        'id_kategori_produk',
         'stok',
         'harga_produk',
         'foto_produk'
     ];
+
+    public function kategori()
+    {
+        return $this->hasOne(Kategori::class, 'id', 'id_kategori_produk');
+    }
 }

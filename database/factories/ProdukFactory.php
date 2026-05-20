@@ -19,7 +19,7 @@ class ProdukFactory extends Factory
     {
         return [
             'nama_produk' => fake()->firstName(),
-            'kategori_produk' => fake()->randomElement(['Baju', 'Celana', 'Sepatu']),
+            'id_kategori_produk' => fake()->numberBetween(1, 2), // Only 2 categories exist
             'stok' => fake()->randomNumber(2),
             'harga_produk' => fake()->numberBetween(10000, 100000)
         ];

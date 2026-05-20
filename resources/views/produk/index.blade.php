@@ -15,7 +15,14 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <a href="{{ route('produk.create') }}" class="btn btn-primary mb-3">+ Tambah</a>
+    <div class="d-flex justify-content-between mb-3">
+        <a href="{{ route('produk.create') }}" class="btn btn-primary">+ Tambah</a>
+
+        <form action="{{ route('produk.index') }}" method="GET" class="d-flex">
+            <input type="text" name="search" class="form-control me-2" placeholder="Cari..." value="{{ $search ?? '' }}">
+            <button type="submit" class="btn btn-outline-secondary">Cari</button>
+        </form>
+    </div>
 
     <div class="table-responsive">
         <table class="table table-bordered table-hover align-middle">
@@ -50,7 +57,7 @@
                         @endif
                     </td>
 
-                    <td>{{ $item->kategori_produk }}</td>
+                    <td>{{ $item->kategori->nama_kategori ?? '-' }}</td>
                     <td>{{ $item->nama_produk }}</td>
                     <td>{{ $item->stok }}</td>
                     <td>Rp{{ number_format($item->harga_produk,0,',','.') }}</td>

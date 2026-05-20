@@ -4,25 +4,37 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produk;
+use App\Models\Kategori;
 use Illuminate\Support\Facades\Storage;
 
 class ProdukController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $result = Produk::all();
-        return view('produk.index', compact('result'));
+        $search = $request->search;
+        $query = Produk::query();
+
+        if ($search) {
+            $query->whereAny(['nama_produk', 'harga_produk', 'stok'], 'LIKE', "%$search%")
+                  ->orWhereHas('kategori', function ($q) use ($search) {
+                      $q->where('nama_kategori', 'LIKE', "%$search%");
+                  });
+        }
+
+        $result = $query->with('kategori')->get();
+        return view('produk.index', compact('result', 'search'));
     }
 
     public function create()
     {
-        return view('produk.form');
+        $kategori = Kategori::all();
+        return view('produk.form', compact('kategori'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'kategori_produk' => 'required',
+            'id_kategori_produk' => 'required',
             'harga_produk' => 'required|numeric|min:1000',
             'nama_produk' => 'required|min:3|max:100',
             'stok' => 'required|numeric|min:0',
@@ -45,7 +57,8 @@ class ProdukController extends Controller
     public function edit($id)
     {
         $produk = Produk::findOrFail($id);
-        return view('produk.form', compact('produk'));
+        $kategori = Kategori::all();
+        return view('produk.form', compact('produk', 'kategori'));
     }
 
     public function update(Request $request, $id)
@@ -53,7 +66,7 @@ class ProdukController extends Controller
         $produk = Produk::findOrFail($id);
 
         $request->validate([
-            'kategori_produk' => 'required',
+            'id_kategori_produk' => 'required',
             'harga_produk' => 'required|numeric|min:1000',
             'nama_produk' => 'required|min:3|max:100',
             'stok' => 'required|numeric|min:0'

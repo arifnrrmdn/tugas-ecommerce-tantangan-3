@@ -31,10 +31,13 @@
         {{-- KATEGORI --}}
         <div class="mb-3">
             <label>Kategori</label>
-            <select name="kategori_produk" class="form-control">
+            <select name="id_kategori_produk" class="form-control">
                 <option value="">- Pilih -</option>
-                <option value="Sepatu" {{ (old('kategori_produk', $produk->kategori_produk ?? '') == 'Sepatu') ? 'selected' : '' }}>Sepatu</option>
-                <option value="Baju" {{ (old('kategori_produk', $produk->kategori_produk ?? '') == 'Baju') ? 'selected' : '' }}>Baju</option>
+                @foreach($kategori as $kat)
+                    <option value="{{ $kat->id }}" {{ (old('id_kategori_produk', $produk->id_kategori_produk ?? '') == $kat->id) ? 'selected' : '' }}>
+                        {{ $kat->nama_kategori }}
+                    </option>
+                @endforeach
             </select>
         </div>
 

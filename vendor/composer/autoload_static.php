@@ -532,7 +532,10 @@ class ComposerStaticInit53b5d56b3b7e3cbac1713e68c8850f6c
 
     public static $classMap = array (
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\PelangganController' => __DIR__ . '/../..' . '/app/Http/Controllers/PelangganController.php',
         'App\\Http\\Controllers\\ProdukController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProdukController.php',
+        'App\\Models\\Kategori' => __DIR__ . '/../..' . '/app/Models/Kategori.php',
+        'App\\Models\\Pelanggan' => __DIR__ . '/../..' . '/app/Models/Pelanggan.php',
         'App\\Models\\Produk' => __DIR__ . '/../..' . '/app/Models/Produk.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
@@ -661,6 +664,7 @@ class ComposerStaticInit53b5d56b3b7e3cbac1713e68c8850f6c
         'Database\\Factories\\ProdukFactory' => __DIR__ . '/../..' . '/database/factories/ProdukFactory.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Database\\Seeders\\KategoriSeeder' => __DIR__ . '/../..' . '/database/seeders/KategoriSeeder.php',
         'Database\\Seeders\\PelangganSeeder' => __DIR__ . '/../..' . '/database/seeders/PelangganSeeder.php',
         'Database\\Seeders\\ProdukSeeder' => __DIR__ . '/../..' . '/database/seeders/ProdukSeeder.php',
         'DateError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
