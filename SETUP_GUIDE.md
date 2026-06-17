@@ -8,9 +8,15 @@
 
 ## Langkah 1: Install PHP 8.2+
 
-### Untuk Ubuntu/Debian:
+### Untuk Ubuntu 22.04 (Jammy) / Ubuntu 20.04 (Focal):
+
+> **Catatan:** Ubuntu 22.04 hanya menyediakan PHP 8.1 secara default. Untuk PHP 8.2, perlu menambahkan PPA `ondrej/php` terlebih dahulu.
+
 ```bash
-# Update package list
+# Tambahkan PPA ondrej/php (sumber paket PHP terbaru)
+sudo apt update
+sudo apt install -y software-properties-common
+sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update
 
 # Install PHP 8.2 dan extensions yang diperlukan
