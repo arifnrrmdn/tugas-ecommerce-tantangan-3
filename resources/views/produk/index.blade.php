@@ -41,7 +41,7 @@
             <tbody>
                 @forelse($result as $item)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $result->firstItem() + $loop->index }}</td>
 
                     {{-- FOTO --}}
                     <td>
@@ -86,6 +86,15 @@
                 @endforelse
             </tbody>
         </table>
+    </div>
+
+    {{-- PAGINATION --}}
+    <div class="d-flex justify-content-between align-items-center mt-3">
+        <small class="text-muted">
+            Menampilkan {{ $result->firstItem() ?? 0 }}–{{ $result->lastItem() ?? 0 }}
+            dari {{ $result->total() }} produk
+        </small>
+        {{ $result->links() }}
     </div>
 </div>
 

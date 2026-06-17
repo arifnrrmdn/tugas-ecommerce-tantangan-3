@@ -15,13 +15,15 @@ class ProdukController extends Controller
         $query = Produk::query();
 
         if ($search) {
-            $query->whereAny(['nama_produk', 'harga_produk', 'stok'], 'LIKE', "%$search%")
+            $query->where(function ($q) use ($search) {
+                $q->whereAny(['nama_produk', 'harga_produk', 'stok'], 'LIKE', "%$search%")
                   ->orWhereHas('kategori', function ($q) use ($search) {
                       $q->where('nama_kategori', 'LIKE', "%$search%");
                   });
+            });
         }
 
-        $result = $query->with('kategori')->get();
+        $result = $query->with('kategori')->paginate(10)->withQueryString();
         return view('produk.index', compact('result', 'search'));
     }
 
